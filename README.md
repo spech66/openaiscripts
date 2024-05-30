@@ -37,9 +37,9 @@ Add your API key to the .env file (see env.sample).
 
 * dalle: text to image
   * `python dalle.py "a bear in a forest"`
-* whisper: audio to text
+* whisper: audio to text (e.g. your WhatsApp voice notes)
   * `python whisper.py test.ogg`
-* whisper-yt: youtube to text
+* whisper-yt: youtube to text (depends on youtube-dl and ffmpeg - YouTube might block this from time to time)
   * `python whisper-yt.py https://www.youtube.com/shorts/pB5Pfq-Aa3g`
 * voice: text to speech
   * `python voice.py "Hello, how are you?"`
