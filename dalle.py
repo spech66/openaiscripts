@@ -22,7 +22,7 @@ image_url = ""
 try:
     response = client.images.generate(
     model="dall-e-3",
-    prompt=text_prompt, # "a white siamese cat",
+    prompt=text_prompt,
     size="1024x1024",
     quality="standard",
     n=1,
