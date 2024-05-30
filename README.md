@@ -1,6 +1,6 @@
 # OpenAI Scripts
 
-Wrapper for OpenAI API. Use ChatGPT, DALL-E, and other models (TTS, STT, ...). Allows conversion between text, image, audio, and video.
+CLI for OpenAI API. Use ChatGPT, DALL-E, and other models (TTS, STT, ...). Allows conversion between text, image, audio, and video.
 
 ## Setup
 
