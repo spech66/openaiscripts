@@ -29,7 +29,7 @@ try:
     speech_file_path = f"voice/{cur_time}.mp3"
     response = client.audio.speech.create(
         model="tts-1",
-        voice="onyx", # alloy, echo, fable, onyx, nova, and shimmer - https://platform.openai.com/docs/guides/text-to-speech/voice-options
+        voice=os.getenv("SPEECH_VOICE") or "alloy",
         input=text_prompt
     )
 
