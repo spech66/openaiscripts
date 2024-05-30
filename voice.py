@@ -1,7 +1,6 @@
 import os
 import sys
 from datetime import datetime
-import urllib.request
 from dotenv import load_dotenv
 import openai
 from openai import OpenAI
@@ -30,7 +29,7 @@ try:
     speech_file_path = f"voice/{cur_time}.mp3"
     response = client.audio.speech.create(
         model="tts-1",
-        voice="alloy",
+        voice="onyx", # alloy, echo, fable, onyx, nova, and shimmer - https://platform.openai.com/docs/guides/text-to-speech/voice-options
         input=text_prompt
     )
 
