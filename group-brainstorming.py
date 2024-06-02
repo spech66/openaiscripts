@@ -13,6 +13,21 @@ if len(sys.argv) < 2:
     print("Please provide an text")
     exit(1)
 
-# group_brainstorming
+text_prompt = sys.argv[1]
+
+client = OpenAI()
+
+response = ""
 
 print("WIP")
+
+# Store the resposne in a file
+if not os.path.isdir("group_brainstorming"):
+    os.mkdir("group_brainstorming")
+
+cur_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+
+with open(f"group_brainstorming/{cur_time}.txt", "w", encoding="utf-8") as f:
+    f.write(text_prompt)
+    f.write("\n\n---\n\n")
+    f.write(response)
