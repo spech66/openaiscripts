@@ -21,7 +21,7 @@ response = ""
 
 try:
     completion = client.chat.completions.create(
-        model="gpt-4o",
+        model=os.getenv("CHAT_MODEL") or "gpt-4o",
         messages=[
             {"role": "user", "content": text_prompt}
         ]

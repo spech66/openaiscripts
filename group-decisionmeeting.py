@@ -33,7 +33,7 @@ try:
         system_prompt += "Write a list of pros and cons of the topic."
         
         completion = client.chat.completions.create(
-            model="gpt-4o",
+            model=os.getenv("CHAT_MODEL") or "gpt-4o",
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": text_prompt}
@@ -47,7 +47,7 @@ try:
 except openai.OpenAIError as e:
   print(e.http_status)
   print(e.error)
-  exit(1)    
+  exit(1)
 
 # Store the response in a file
 if not os.path.isdir("group_decisionmeeting"):

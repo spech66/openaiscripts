@@ -27,18 +27,32 @@ print("Participants:")
 for participant in participants:
     print(f"    {participant['name']}")
 
-# try:
-#     completion = client.chat.completions.create(
-#         model="gpt-4o",
-#         messages=[
-#             {"role": "user", "content": text_prompt}
-#         ]
-#     )
-#     response = completion.choices[0].message.content
-# except openai.OpenAIError as e:
-#   print(e.http_status)
-#   print(e.error)
-#   exit(1)    
+try:
+    for participant in participants:
+        print(f"Participant: {participant['name']}")
+        
+        system_prompt = "You are in a group brainstorming session with your team. You are discussing the topic provided by the user. "
+        system_prompt += f"You are '{participant['name']}'. "
+        system_prompt += f" {participant['role']}. "
+        system_prompt += "Write all the ideas that come to your mind."
+        
+        completion = client.chat.completions.create(
+            model=os.getenv("CHAT_MODEL") or "gpt-4o",
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": text_prompt}
+            ]
+        )
+
+        response = completion.choices[0].message.content
+        
+        response_full += f"{participant['name']}:\n"
+        response_full += response
+        response_full += "\n\n---\n\n"        
+except openai.OpenAIError as e:
+  print(e.http_status)
+  print(e.error)
+  exit(1)
 
 # Store the response in a file
 if not os.path.isdir("group_brainstorming"):
