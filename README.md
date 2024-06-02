@@ -45,6 +45,10 @@ Add your API key to the .env file (see env.sample).
   * `python whisper-yt.py https://www.youtube.com/shorts/pB5Pfq-Aa3g`
 * voice: text to speech
   * `python voice.py "Hello, how are you?"`
+* group-brainstorming: Multiple participants brainstorming (see json file for participants)
+  * `python group-brainstorming.py "What are the best ways to improve your health?"`
+* group-decisionmeeting: Multiple participants in a decision meeting (see json file for participants)
+  * `python group-decisionmeeting.py "I want to work in a startup, what should I do? Current job is boring but stable. I have a family to feed. I am afraid of taking risks."`
 
 ## Development
 
