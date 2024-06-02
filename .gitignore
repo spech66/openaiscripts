@@ -167,3 +167,5 @@ dalle/*
 voice/*
 whisper_yt/*
 chat/*
+group_decisionmeeting/*
+group_brainstorming/*
