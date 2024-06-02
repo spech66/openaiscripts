@@ -166,3 +166,4 @@ cython_debug/
 dalle/*
 voice/*
 whisper_yt/*
+chat/*

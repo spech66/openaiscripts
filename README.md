@@ -35,6 +35,8 @@ Add your API key to the .env file (see env.sample).
 
 ## Scripts
 
+* chat: ChatGPT response
+  * `python chat.py "What is the capital of germany?"`
 * dalle: text to image
   * `python dalle.py "a bear in a forest"`
 * whisper: audio to text (e.g. your WhatsApp voice notes)
