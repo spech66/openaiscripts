@@ -23,10 +23,6 @@ participants = []
 with open("group_brainstorming_participants.json", "r") as file:
     participants = json.load(file)
 
-print("Participants:")
-for participant in participants:
-    print(f"    {participant['name']}")
-
 try:
     for participant in participants:
         print(f"Participant: {participant['name']}")
@@ -43,7 +39,6 @@ try:
                 {"role": "user", "content": text_prompt}
             ]
         )
-
         response = completion.choices[0].message.content
         
         response_full += f"{participant['name']}:\n"
