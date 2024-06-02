@@ -17,15 +17,15 @@ text_prompt = sys.argv[1]
 
 client = OpenAI()
 
-response = ""
+response_full = ""
 
-personas = []
-with open("group_brainstorming_personas.json", "r") as file:
-    personas = json.load(file)
+participants = []
+with open("group_brainstorming_participants.json", "r") as file:
+    participants = json.load(file)
 
 print("Participants:")
-for persona in personas:
-    print(f"    {persona['name']}")
+for participant in participants:
+    print(f"    {participant['name']}")
 
 # try:
 #     completion = client.chat.completions.create(
@@ -40,13 +40,13 @@ for persona in personas:
 #   print(e.error)
 #   exit(1)    
 
-# # Store the response in a file
-# if not os.path.isdir("group_brainstorming"):
-#     os.mkdir("group_brainstorming")
+# Store the response in a file
+if not os.path.isdir("group_brainstorming"):
+    os.mkdir("group_brainstorming")
 
-# cur_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+cur_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
-# with open(f"group_brainstorming/{cur_time}.txt", "w", encoding="utf-8") as f:
-#     f.write(text_prompt)
-#     f.write("\n\n---\n\n")
-#     f.write(response)
+with open(f"group_brainstorming/{cur_time}.txt", "w", encoding="utf-8") as f:
+    f.write(text_prompt)
+    f.write("\n\n---\n\n")
+    f.write(response_full)
