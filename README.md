@@ -1,6 +1,6 @@
 # OpenAI Scripts
 
-CLI for OpenAI API. Use ChatGPT, DALL-E, and other models (TTS, STT, ...). Allows conversion between text, image, audio, and video.
+OpenAI scripts for various tasks including brainstorming, decision meetings, chat, text to image, audio to text, text to speech, etc.
 
 ## Setup
 
