@@ -49,6 +49,8 @@ Add your API key to the .env file (see env.sample).
   * `python group-brainstorming.py "What are the best ways to improve your health?"`
 * group-decisionmeeting: Multiple participants in a decision meeting (see json file for participants)
   * `python group-decisionmeeting.py "I want to work in a startup, what should I do? Current job is boring but stable. I have a family to feed. I am afraid of taking risks."`
+* group-summary: Summarize a meeting or brainstorming session
+  * `python group-summary.py (group_decisionmeeting|group_brainstorming)/filename.md`
 
 ## Development
 
