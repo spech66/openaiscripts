@@ -41,7 +41,7 @@ try:
         )
         response = completion.choices[0].message.content
         
-        response_full += f"{participant['name']}:\n"
+        response_full += f"## {participant['name']}\n\n"
         response_full += response
         response_full += "\n\n---\n\n"        
 except openai.OpenAIError as e:
@@ -55,7 +55,8 @@ if not os.path.isdir("group_decisionmeeting"):
 
 cur_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
-with open(f"group_decisionmeeting/{cur_time}.txt", "w", encoding="utf-8") as f:
+with open(f"group_decisionmeeting/{cur_time}.md", "w", encoding="utf-8") as f:
+    f.write(f"# Group decision meeting {cur_time}\n\n")
     f.write(text_prompt)
     f.write("\n\n---\n\n")
     f.write(response_full)
