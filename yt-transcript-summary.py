@@ -57,5 +57,5 @@ if not os.path.isdir("yt_transcript_summary"):
 
 cur_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
-with open(f"chat/{cur_time}.txt", "w", encoding="utf-8") as f:
+with open(f"yt_transcript_summary/{cur_time}.txt", "w", encoding="utf-8") as f:
     f.write(response)
