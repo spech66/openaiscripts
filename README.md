@@ -12,6 +12,8 @@ OpenAI scripts for various tasks including brainstorming, decision meetings, cha
   * `python whisper.py test.ogg`
 * whisper-yt: youtube to text (depends on youtube-dl and ffmpeg - YouTube might block this from time to time)
   * `python whisper-yt.py https://www.youtube.com/shorts/pB5Pfq-Aa3g`
+* yt-transcript-summary: extract transcript from YouTube video and summarize it
+  * `python yt-transcript-summary.py https://www.youtube.com/watch?v=undmT0Jh7H4`
 * voice: text to speech
   * `python voice.py "Hello, how are you?"`
 * group-brainstorming: Multiple participants brainstorming (see json file for participants)
