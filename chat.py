@@ -34,7 +34,7 @@ except openai.OpenAIError as e:
 
 print(response)
 
-# Store the resposne in a file
+# Store the response in a file
 if not os.path.isdir("chat"):
     os.mkdir("chat")
     
