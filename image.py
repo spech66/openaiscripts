@@ -20,14 +20,25 @@ client = OpenAI()
 image_url = ""
 
 try:
-    response = client.images.generate(
-    model=os.getenv("IMAGE_MODEL") or "gpt-image-1",
-    prompt=text_prompt,
-    size=os.getenv("IMAGE_SIZE") or "auto",
-    quality=os.getenv("IMAGE_QUALITY") or "auto",
-    background=os.getenv("IMAGE_BACKGROUND") or "auto",
-    n=1,
-    )
+    image_model = os.getenv("IMAGE_MODEL") or "gpt-image-1"
+    if image_model == "gpt-image-1":
+        response = client.images.generate(
+            model=image_model,
+            prompt=text_prompt,
+            size=os.getenv("IMAGE_SIZE") or "auto",
+            quality=os.getenv("IMAGE_QUALITY") or "auto",
+            background=os.getenv("IMAGE_BACKGROUND") or "auto",
+            n=1,
+        )
+    else:
+        response = client.images.generate(
+            model=image_model,
+            prompt=text_prompt,
+            size=os.getenv("IMAGE_SIZE") or "auto",
+            quality=os.getenv("IMAGE_QUALITY") or "standard",
+            n=1,
+        )
+
     image_url = response.data[0].url
 except openai.OpenAIError as e:
   print(e.http_status)
