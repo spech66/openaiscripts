@@ -6,8 +6,8 @@ OpenAI scripts for various tasks including brainstorming, decision meetings, cha
 
 * chat: ChatGPT response
   * `python chat.py "What is the capital of germany?"`
-* dalle: text to image
-  * `python dalle.py "a bear in a forest"`
+* image: text to image
+  * `python image.py "a bear in a forest"`
 * whisper: audio to text (e.g. your WhatsApp voice notes)
   * `python whisper.py test.ogg`
 * whisper-yt: youtube to text (depends on youtube-dl and ffmpeg - YouTube might block this from time to time)

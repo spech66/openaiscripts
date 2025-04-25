@@ -21,10 +21,11 @@ image_url = ""
 
 try:
     response = client.images.generate(
-    model="dall-e-3",
+    model=os.getenv("IMAGE_MODEL") or "gpt-image-1",
     prompt=text_prompt,
-    size="1024x1024",
-    quality="standard",
+    size=os.getenv("IMAGE_SIZE") or "auto",
+    quality=os.getenv("IMAGE_QUALITY") or "auto",
+    background=os.getenv("IMAGE_BACKGROUND") or "opaque",
     n=1,
     )
     image_url = response.data[0].url
@@ -35,12 +36,12 @@ except openai.OpenAIError as e:
 
 print(image_url)
 
-# Download image using python and save it to file in the dalle folder
-if not os.path.isdir("dalle"):
-    os.mkdir("dalle")
+# Download image using python and save it to file in the image folder
+if not os.path.isdir("image"):
+    os.mkdir("image")
 with urllib.request.urlopen(image_url) as response:
     cur_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    with open(f"dalle/{cur_time}.png", "wb") as f:
+    with open(f"image/{cur_time}.png", "wb") as f:
         f.write(response.read())
-    with open(f"dalle/{cur_time}.txt", "wb") as f:
+    with open(f"image/{cur_time}.txt", "wb") as f:
         f.write(text_prompt.encode("utf-8"))
