@@ -164,6 +164,7 @@ cython_debug/
 # Project
 .env
 dalle/*
+image/*
 voice/*
 whisper_yt/*
 chat/*
