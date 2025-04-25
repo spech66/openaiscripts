@@ -25,7 +25,7 @@ try:
     prompt=text_prompt,
     size=os.getenv("IMAGE_SIZE") or "auto",
     quality=os.getenv("IMAGE_QUALITY") or "auto",
-    background=os.getenv("IMAGE_BACKGROUND") or "opaque",
+    background=os.getenv("IMAGE_BACKGROUND") or "auto",
     n=1,
     )
     image_url = response.data[0].url
