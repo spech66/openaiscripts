@@ -1,6 +1,9 @@
 import os
 import sys
-import openai
+from dotenv import load_dotenv
+from openai import OpenAI
+
+load_dotenv() 
 
 # Fail if no commandline argument is provided
 if len(sys.argv) < 2:
@@ -19,12 +22,17 @@ if audio_file_name.endswith(".ogg"):
     os.system(f"ffmpeg -i '{audio_file_name}' -ab 320k '{audio_file_name}.mp3'")
     audio_file_name = f"{audio_file_name}.mp3"
 
-audio_file= open(audio_file_name, "rb")
-transcript = openai.Audio.transcribe("whisper-1", audio_file, language="de")
-print(transcript)
+audio_file = open(audio_file_name, "rb")
+client = OpenAI()
+transcript = client.audio.transcriptions.create(
+    model="whisper-1",
+    file=audio_file,
+    language="de",
+)
+print(transcript.text)
 
 # write transcript to file
 if not os.path.isdir("whisper_audio"):
     os.mkdir("whisper_audio")
-with open(f"whisper_audio/{audio_file_name}.txt", "w") as f:
-    f.write(transcript["text"])
+with open(f"whisper_audio/{audio_file_name}.txt", "w", encoding="utf-8") as f:
+    f.write(transcript.text)
