@@ -19,8 +19,9 @@ if not os.path.isfile(audio_file_name):
 
 # If file is in ogg format convert it to mp3
 if audio_file_name.endswith(".ogg"):
-    os.system(f"ffmpeg -i '{audio_file_name}' -ab 320k '{audio_file_name}.mp3'")
-    audio_file_name = f"{audio_file_name}.mp3"
+    mp3_file_name = audio_file_name[:-4] + ".mp3"
+    os.system(f"ffmpeg -i '{audio_file_name}' -ab 320k '{mp3_file_name}'")
+    audio_file_name = mp3_file_name
 
 audio_file = open(audio_file_name, "rb")
 client = OpenAI()
