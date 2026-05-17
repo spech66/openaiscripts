@@ -1,6 +1,7 @@
 import os
 import sys
 import yt_dlp
+from datetime import datetime
 from dotenv import load_dotenv
 from openai import OpenAI
 
@@ -45,5 +46,6 @@ print(transcript.text)
 # write transcript to file
 if not os.path.isdir("whisper_yt"):
     os.mkdir("whisper_yt")
-with open(f"whisper_yt/{audio_file_name}.txt", "w") as f:
+cur_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+with open(f"whisper_yt/{cur_time}_{audio_file_name}.txt", "w") as f:
     f.write(transcript.text)
