@@ -1,5 +1,6 @@
 import os
 import sys
+import base64
 from datetime import datetime
 import urllib.request
 from dotenv import load_dotenv
@@ -17,11 +18,12 @@ text_prompt = sys.argv[1]
 
 client = OpenAI()
 
-image_url = ""
+image_b64 = None
+image_url = None
 
 try:
-    image_model = os.getenv("IMAGE_MODEL") or "gpt-image-1"
-    if image_model == "gpt-image-1":
+    image_model = os.getenv("IMAGE_MODEL") or "gpt-image-2"
+    if image_model in ("gpt-image-2", "gpt-image-1"):
         response = client.images.generate(
             model=image_model,
             prompt=text_prompt,
@@ -30,29 +32,32 @@ try:
             background=os.getenv("IMAGE_BACKGROUND") or "auto",
             n=1,
         )
+        image_b64 = response.data[0].b64_json
     else:
         response = client.images.generate(
             model=image_model,
             prompt=text_prompt,
-            size=os.getenv("IMAGE_SIZE") or "auto",
+            size=os.getenv("IMAGE_SIZE") or "1024x1024",
             quality=os.getenv("IMAGE_QUALITY") or "standard",
             n=1,
         )
-
-    image_url = response.data[0].url
+        image_url = response.data[0].url
+        print(image_url)
 except openai.OpenAIError as e:
-  print(e.http_status)
-  print(e.error)
-  exit(1)
+    print(e.http_status)
+    print(e.error)
+    exit(1)
 
-print(image_url)
-
-# Download image using python and save it to file in the image folder
+# Save image to file in the image folder
 if not os.path.isdir("image"):
     os.mkdir("image")
-with urllib.request.urlopen(image_url) as response:
-    cur_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+cur_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+with open(f"image/{cur_time}.txt", "wb") as f:
+    f.write(text_prompt.encode("utf-8"))
+if image_b64:
     with open(f"image/{cur_time}.png", "wb") as f:
-        f.write(response.read())
-    with open(f"image/{cur_time}.txt", "wb") as f:
-        f.write(text_prompt.encode("utf-8"))
+        f.write(base64.b64decode(image_b64))
+elif image_url:
+    with urllib.request.urlopen(image_url) as url_response:
+        with open(f"image/{cur_time}.png", "wb") as f:
+            f.write(url_response.read())
