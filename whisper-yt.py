@@ -1,7 +1,10 @@
 import os
 import sys
 import yt_dlp
-import openai
+from dotenv import load_dotenv
+from openai import OpenAI
+
+load_dotenv()
 
 # Fail if no commandline argument is provided
 if len(sys.argv) < 2:
@@ -31,12 +34,16 @@ if not os.path.isfile(audio_file_name):
     exit(1)
 
 audio_file = open(audio_file_name, "rb")
-transcript = openai.Audio.transcribe("whisper-1", audio_file)
+client = OpenAI()
+transcript = client.audio.transcriptions.create(
+    model="gpt-4o-transcribe",
+    file=audio_file,
+)
 
-print(transcript)
+print(transcript.text)
 
 # write transcript to file
 if not os.path.isdir("whisper_yt"):
     os.mkdir("whisper_yt")
 with open(f"whisper_yt/{audio_file_name}.txt", "w") as f:
-    f.write(transcript["text"])
+    f.write(transcript.text)
