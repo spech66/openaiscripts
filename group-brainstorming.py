@@ -33,7 +33,7 @@ try:
         system_prompt += "Write all the ideas that come to your mind."
         
         completion = client.chat.completions.create(
-            model=os.getenv("CHAT_MODEL") or "gpt-4o",
+            model=os.getenv("CHAT_MODEL") or "gpt-5.5",
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": text_prompt}

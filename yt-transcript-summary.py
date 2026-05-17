@@ -37,7 +37,7 @@ response = ""
 
 try:
     completion = client.chat.completions.create(
-        model=os.getenv("CHAT_MODEL") or "gpt-4o",
+        model=os.getenv("CHAT_MODEL") or "gpt-5.5",
         messages=[
             {"role": "system", "content": "Summarize the video transcript."},
             {"role": "user", "content": txt_formatted}

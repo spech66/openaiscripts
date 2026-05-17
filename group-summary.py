@@ -34,7 +34,7 @@ try:
     system_prompt += "The summary should give all possible options and a conclusion."
         
     completion = client.chat.completions.create(
-        model=os.getenv("CHAT_MODEL") or "gpt-4o",
+        model=os.getenv("CHAT_MODEL") or "gpt-5.5",
         messages=[
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": text_prompt}
