@@ -28,7 +28,7 @@ cur_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 try:
     speech_file_path = f"voice/{cur_time}.mp3"
     response = client.audio.speech.create(
-        model="tts-1",
+        model="gpt-4o-mini-tts",
         voice=os.getenv("SPEECH_VOICE") or "alloy",
         input=text_prompt
     )
